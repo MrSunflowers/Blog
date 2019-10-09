@@ -1,0 +1,216 @@
+---
+layout: default
+---
+<header class="intro-header" style="background-image: url('{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading" id="tag-heading"  {% if page.head_padding %}style="padding:{{page.head_padding}} 0;"{% endif %}>
+                    <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    <span class="subheading">
+                      <a id="cb-search-btn" style="text-decoration:none;" href="javascript:">
+                        <i  class="iconfont icon-icon-chaxun icon-1x" style="color:#FFFF" title="双击ctrl试一下"></i>&nbsp;
+                      </a>{{ page.description }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+        {% if site.sidebar == false %}
+<!-- NO SIDEBAR -->
+    <!-- PostList Container -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 postlist-container">
+                {{ content }}
+            </div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                {% if site.featured-tags %}
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="{{'/tags/' | prepend: site.baseurl }}">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				{% for tag in site.tags %}
+                            {% if tag[1].size > site.featured-condition-size %}
+                				<a href="{{ site.baseurl }}/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+                                    {{ tag[0] }}
+                                </a>
+                            {% endif %}
+        				{% endfor %}
+        			</div>
+                </section>
+                {% endif %}
+
+                <!-- Friends Blog -->
+                {% if site.friends %}
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    {% for friend in site.friends %}
+                        <li><a target="_blank" href="{{friend.href}}">{{friend.title}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        {% else %}
+
+<!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+    			{{ content }}
+    		</div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+
+                <!-- Featured Tags -->
+                {% if site.featured-tags %}
+
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="{{'/tags/' | prepend: site.baseurl }}">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        {% for tag in site.tags %}
+                            {% if tag[1].size > site.featured-condition-size %}
+                                <a href="{{ site.baseurl }}/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+                                    {{ tag[0] }}
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </section>
+                {% endif %}
+                <!-- Date(日期归档)  start-->
+                <!-- author: Fe -->
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+
+                    <h5><a href="{{'/date/' | prepend: site.baseurl }}">My Date</a></h5>
+
+                    <div class="tags">
+
+                      {% for post in site.posts %}
+                      	{% capture ym %}{{ post.date | date:"%Y%m" }}{% endcapture %}
+                      	{% if yearmonth != ym %}
+                      		{% assign yearmonth = ym %}
+
+                          <a href="/date/#a{{ ym }}" rel="5">{{ post.date | date: "%Y年%m月" }}</a>
+
+                      	{% endif %}
+                      {% endfor %}
+
+                        <!-- {% for tag in site.tags %}
+                            {% if tag[1].size > site.featured-condition-size %}
+                                <a href="{{ site.baseurl }}/tags/#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">
+                                    {{ tag[0] }}
+                                </a>
+                            {% endif %}
+                        {% endfor %} -->
+
+                    </div>
+                </section>
+                <!-- Date end-->
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+                    <hr><h5><a href="{{'/about/' | prepend: site.baseurl }}">ABOUT ME</a></h5>
+                    <div class="short-about">
+                        {% if site.sidebar-avatar %}
+                            <a href="{{ site.baseurl }}/about">
+                                <img src="{{site.sidebar-avatar}}" width="100%" height="100%"/>
+                            </a>
+                        {% endif %}
+                        {% if site.sidebar-about-description %}
+                            <p>{{site.sidebar-about-description}}</p>
+                        {% endif %}
+                        <!-- SNS Link -->
+                        <ul class="list-inline">
+                            {% if site.RSS %}
+                            <li>
+                                <a style="text-decoration:none;" href="{{ "/feed.xml" | prepend: site.baseurl }}">
+                                        <i class="iconfont icon-rss icon-1x"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                              <!-- add coding  by Fe -->
+                            {% if site.coding_username %}
+                            <li>
+                                <a target="_blank"  style="text-decoration:none;" href="https://coding.net/u/{{ site.coding_username }}/project">
+                                    <i class="iconfont icon-CN_codingnet icon-1x"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% if site.zhihu_username %}
+                            <li>
+                                <a target="_blank" style="text-decoration:none;" href="https://www.zhihu.com/people/{{ site.zhihu_username }}">
+                                      <i class="iconfont icon-zhihu icon-1x"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% if site.weibo_username %}
+                            <li>
+                                <a target="_blank" style="text-decoration:none;" href="http://weibo.com/{{ site.weibo_username }}">
+                                      <i class="iconfont icon-weibo icon-1x"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% if site.facebook_username %}
+                            <li>
+                                <a target="_blank" style="text-decoration:none;" href="https://www.facebook.com/{{ site.facebook_username }}">
+                                    <i class="iconfont icon-facebook3 icon-1x"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% if site.twitter_username %}
+                            <li>
+                                <a style="text-decoration:none;" href="https://twitter.com/{{ site.twitter_username }}">
+                                      <i class="iconfont icon-tuitetwitter43 icon-1x"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% if site.github_username %}
+                            <li>
+                                <a style="text-decoration:none;" target="_blank" href="https://github.com/{{ site.github_username }}">
+                                      <i class="iconfont icon-GitHub icon-1x"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                        </ul>
+                        {% if site.email %}
+                            <p> <i class="iconfont icon-email"></i> {{site.email}}</p>
+                        {% endif %}
+                    </div>
+                </section>
+                <!-- Friends Blog -->
+                {% if site.friends %}
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    {% for friend in site.friends %}
+                        <li><a target="_blank" href="{{friend.href}}">{{friend.title}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+    		</div>
+        {% endif %}
+	</div>
+</div>
