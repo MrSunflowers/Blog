@@ -1,14 +1,14 @@
 # Site settings
-title: Fe Blog  #你博客的标题
-SEOTitle: Fe的博客 | Fe Blog  #显示在浏览器上搜索的时候显示的标题
+title: Sunflower Blog  #你博客的标题
+SEOTitle: Sunflower的博客 | Sunflower Blog  #显示在浏览器上搜索的时候显示的标题
 header-img: img/page-bg-keyboard.png #显示在首页的背景图片
-email: fe@fedemo.top
-description: "Hey，我是Fe，一只JAVA程序猿,这是我的利用 GitHub Pages 与 Jekyll 搭建的个人博客。内有搭建博客的详细教程,欢迎大家来玩。" #网站介绍
-keyword: "Fe的博客,fedemo,GitHub,Fe,博客,Blog,JAVA" #关键词
-url: "https://fedemo.top"          # your host, for absolute URL
-baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "blog" # you code repository
-author: Fe
+email: 1875899178@qq.com
+description: "Hey，我是Sunflower，一只JAVA程序猿,这是我的利用 GitHub Pages 与 Jekyll 搭建的个人博客。内有搭建博客的详细教程,欢迎大家来玩。" #网站介绍
+keyword: "Sunflower的博客,Sunflower,MrSunflowers,GitHub,博客,Blog,JAVA" #关键词
+url: "https://mrsunflowers.github.io/Blog/"          # your host, for absolute URL
+baseurl: "/Blog"      # for example, '/blog' if your blog hosted on 'host/blog'
+github_repo: "Blog" # you code repository
+author: Sunflower
 
 # 是否托管在Coding_Pages
 Coding_Pages: true
@@ -17,18 +17,18 @@ Coding_Pages: true
 baidu_js_push: false
 
 # Sidebar settings侧边栏
-sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Goals determine what you going to be!"
-sidebar-avatar: /img/avatar_p11179162.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar: true                           # 是否开启侧边栏.
+sidebar-about-description: "Goals determine what you going to be!" #装B的话
+sidebar-avatar: /img/avatar_p11179162.jpg      # 你的头像 use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # SNS settings社交账号
 RSS: false
 # weibo_username:
-zhihu_username:    fedemo
-github_username:    FeDemo
+#zhihu_username:    fedemo
+github_username:    MrSunflowers
 # facebook_username:
-twitter_username:   Fedemo10
+#twitter_username:   Fedemo10
 # coding_username: fedemo
 
 
@@ -63,18 +63,18 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: '75ef4c0ecfb2cd85a8f0'    #生成的clientID
-  clientSecret: 'b51aa6b7351f3b3b7a0940714af8489fddb5f905'   #同上
-  repo: img_gitalk    #仓库名称
-  owner: FeDemo    #github用户名
-  admin: FeDemo
+  clientID: 'effa1fd02686eb87e7b2'    #生成的clientID
+  clientSecret: '9521d2d7bd5eb0170bab802e313c83c7c1af1e82'   #同上
+  repo: Blog_gitalk    #仓库名称
+  owner: MrSunflowers    #github用户名
+  admin: MrSunflowers
 
 
 
 
 # Analytics settings 百度统计track_id
 # Baidu Analytics
-ba_track_id: ced86d2ada092fb3a0d736f793d90120
+#ba_track_id: ced86d2ada092fb3a0d736f793d90120
 
 # Google Analytics
 # ga_track_id: 'UA-90855596-1'            # Format: UA-xxxxxx-xx
@@ -98,15 +98,15 @@ service-worker: true
 
 
 # Friends好友链接
-friends: [
-    {
-        title: "Fe Blog",
-        href: "https://fedemo.top/"
-    },{
-        title: "interview",
-        href: "https://fedemo.github.io/interview/"
-    },{
-        title: "Fe Coding",
-        href: "https://coding.net/u/fedemo/project"
-    }
-]
+#friends: [
+#    {
+#        title: "Fe Blog",
+#        href: "https://fedemo.top/"
+#    },{
+#        title: "interview",
+#        href: "https://fedemo.github.io/interview/"
+#    },{
+#        title: "Fe Coding",
+#        href: "https://coding.net/u/fedemo/project"
+#    }
+#]
