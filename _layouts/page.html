@@ -113,7 +113,7 @@ layout: default
                       	{% if yearmonth != ym %}
                       		{% assign yearmonth = ym %}
 
-                          <a href="/Blog/date/#a{{ ym }}" rel="5">{{ post.date | date: "%Y年%m月" }}</a>
+                          <a href="/date/#a{{ ym }}" rel="5">{{ post.date | date: "%Y年%m月" }}</a>
 
                       	{% endif %}
                       {% endfor %}

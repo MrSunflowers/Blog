@@ -15,7 +15,7 @@ head_padding: "55px"
 		{% assign yearmonth = ym %}
 
 	    <li{% if forloop.first %} class="active"{% endif %}>
-		  <a href="/Blog/date/#aa{{ ym }}" data-toggle="tab">{{ post.date | date: "%Y年%m月" }}</a>
+		  <a href="/date/#aa{{ ym }}" data-toggle="tab">{{ post.date | date: "%Y年%m月" }}</a>
     </li>
 
 	{% endif %}
@@ -32,7 +32,7 @@ head_padding: "55px"
 	{% endif %}
 		<p>
 			<div class="post-preview">
-		    <a href="/Blog{{ post.url }}" title="{{ post.title }}" >
+		    <a href="{{ post.url }}" title="{{ post.title }}" >
 			     <time datetime="{{ post.date | date_to_string }}">{{ post.date | date: "%Y-%m-%d" }}</time>
 		       &nbsp;&nbsp;{{ post.title }}
 		    </a>

@@ -3,12 +3,12 @@
     "title": "Sunflower Blog",
     "author": "Sunflower <1875899178@qq.com>",
     "version": "1.7.0",
-    "homepage": "https://mrsunflowers.github.io/Blog/",
+    "homepage": "https://mrsunflowers.github.io/",
     "repository": {
         "type": "git",
-        "url": "https://github.com/MrSunflowers/Blog"
+        "url": "https://github.com/MrSunflowers/mrsunflowers.github.io"
     },
-    "bugs": "https://github.com/MrSunflowers/Blog/issues",
+    "bugs": "https://github.com/MrSunflowers/mrsunflowers.github.io/issues",
     "devDependencies": {
         "grunt": "~0.4.5",
         "grunt-contrib-less": "~0.11.4",

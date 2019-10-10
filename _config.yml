@@ -5,9 +5,9 @@ header-img: img/page-bg-keyboard.png #显示在首页的背景图片
 email: 1875899178@qq.com
 description: "Hey，我是Sunflower，一只JAVA程序猿,这是我的利用 GitHub Pages 与 Jekyll 搭建的个人博客。内有搭建博客的详细教程,欢迎大家来玩。" #网站介绍
 keyword: "Sunflower的博客,Sunflower,MrSunflowers,GitHub,博客,Blog,JAVA" #关键词
-url: "https://mrsunflowers.github.io/Blog/"          # your host, for absolute URL
-baseurl: "/Blog"      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "Blog" # you code repository
+url: "https://mrsunflowers.github.io/"          # your host, for absolute URL
+baseurl: "/blog"      # for example, '/blog' if your blog hosted on 'host/blog'
+github_repo: "blog" # you code repository
 author: Sunflower
 
 # 是否托管在Coding_Pages
@@ -19,7 +19,7 @@ baidu_js_push: false
 # Sidebar settings侧边栏
 sidebar: true                           # 是否开启侧边栏.
 sidebar-about-description: "Goals determine what you going to be!" #装B的话
-sidebar-avatar: /Blog/img/avatar_p11179162.jpg      # 你的头像 use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar_p11179162.jpg      # 你的头像 use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # SNS settings社交账号

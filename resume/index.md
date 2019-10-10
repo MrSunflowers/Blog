@@ -1,7 +1,7 @@
 ---
 layout: github
 title: 简历
-avatar: /Blog/img/avatar_p11179162.jpg
+avatar: /img/avatar_p11179162.jpg
 pdf: https://fedemo.top/resume/download.pdf
 ba_track_id: false
 ---
