@@ -7,7 +7,7 @@ description: "Hey，我是Sunflower，一只JAVA程序猿,这是我的利用 Git
 keyword: "Sunflower的博客,Sunflower,MrSunflowers,GitHub,博客,Blog,JAVA" #关键词
 url: "https://mrsunflowers.github.io/"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "" # you code repository
+github_repo: "mrsunflowers.github.io" # you code repository
 author: Sunflower
 
 # 是否托管在Coding_Pages
