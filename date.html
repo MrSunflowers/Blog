@@ -32,7 +32,7 @@ head_padding: "55px"
 	{% endif %}
 		<p>
 			<div class="post-preview">
-		    <a href="{{ post.url }}" title="{{ post.title }}" >
+		    <a href="/Blog{{ post.url }}" title="{{ post.title }}" >
 			     <time datetime="{{ post.date | date_to_string }}">{{ post.date | date: "%Y-%m-%d" }}</time>
 		       &nbsp;&nbsp;{{ post.title }}
 		    </a>
