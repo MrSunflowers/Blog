@@ -11,7 +11,7 @@ github_repo: "mrsunflowers.github.io" # you code repository
 author: Sunflower
 
 # 是否托管在Coding_Pages
-Coding_Pages: true
+Coding_Pages: false
 
 #  是否开启百度自动推送JS代码
 baidu_js_push: false
