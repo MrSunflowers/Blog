@@ -19,7 +19,7 @@ baidu_js_push: false
 # Sidebar settings侧边栏
 sidebar: true                           # 是否开启侧边栏.
 sidebar-about-description: "Goals determine what you going to be!" #装B的话
-sidebar-avatar: /img/avatar_p11179162.jpg      # 你的头像 use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /Blog/img/avatar_p11179162.jpg      # 你的头像 use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 # SNS settings社交账号
