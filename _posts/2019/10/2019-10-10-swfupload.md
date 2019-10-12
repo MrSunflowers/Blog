@@ -22,7 +22,7 @@ tags:
 - 类似[AJAX](https://baike.baidu.com/item/AJAX)的无刷新上传；
 - 可以显示上传进度；
 - 良好的浏览器兼容性；
-- 兼容其他JavaScript库 (例如：[jQuery](https://baike.baidu.com/item/jQuery), Prototype等)；
+- 兼容其他JavaScript库 (例如:[jQuery](https://baike.baidu.com/item/jQuery), Prototype等)；
 - 可以在浏览器端就对要上传的文件进行限制;
 - 提供了丰富的事件接口供开发者使用;
 
@@ -85,14 +85,113 @@ var settings_object = {
     }
 ```
 
-​	写到这里，我们的上传就已经可以使用了，但是没有任何的提示，需要注意的是，选择完文件<font color=red>**插件会自动开始上传**</font>，如果想自己控制，点击按钮才开始上传需要将 handles.js 中的 `this.startUpload()`注释掉，自己手动调用 `startUpload()`方法。
+​	写到这里，我们的上传就已经可以使用了，但是没有任何的提示，需要注意的是，默认情况下，你选择了文件并关闭了文件选择对话框文件并不会自动开始上传，你需要调用SWFUpload的startUpload()方法，该方法接收一个file_id作为参数，如果参数为空，则自动开始上传文件队列中的第一个文件。选择完文件后<font color=red>**如果文件会自动开始上传**</font>，可以将 handles.js 中的 this.startUpload()注释掉即可。<font color=red>**Swfupload虽支持批量上传，但本质仍是单个文件依次上传，也就是说，每次上传文件都是一次独立的请求**</font>。
 
 ### 回调函数
 
-   - **file_queued_handler：fileQueued(file object) **  当文件选择对话框关闭消失时，如果选择的文件成功加入上传队列，那么针对每个成功加入的文件都会触发一次该事件（N个文件成功加入队列，就触发N次此事件，我们可以在这里完成已选择文件列表的展示功能。
-   - **file_queue_error_handler：fileQueueError(file object, error code, message)**   当选择文件入队失败时触发，每个出错的文件都会触发一次该事件，文件添加队列出错的原因可能有：超过了上传大小限制(-110)，文件为零字节(-120)，超过文件队列数量限制(-100)，设置之外的无效文件类型(-130)。
-   - **upload_start_handler:uploadStart(file object) **  在文件往服务端上传之前触发此事件，可以在这里完成上传前的最后验证以及其他你需要的操作，例如添加、修改、删除post数据等。在完成最后的操作以后，如果函数返回false，那么这个上传不会被启动，并且触发uploadError事件，如果返回true或者无返回，那么将正式启动上传。
-   - **upload_error_handler：uploadError(file object, error code, message)   **
+   - **file_queued_handler:fileQueued(file object) **  当文件选择对话框关闭消失时，如果选择的文件成功加入上传队列，那么针对每个成功加入的文件都会触发一次该事件（N个文件成功加入队列，就触发N次此事件，我们可以在这里完成已选择文件列表的展示功能。
 
+```javascript
+	//File Object包含了一组可用的文件属性
+	{
+		id : string, // SWFUpload控制的文件的id,通过指定该id可启动此文件的上传、退出上传等
+		index : number, // 文件在选定文件队列（包括出错、退出、排队的文件）中的索引，getFile可使用此索引
+		name : string, // 文件名，不包括文件的路径。
+		size : number, // 文件字节数
+		type : string, // 客户端操作系统设置的文件类型
+		creationdate : Date, // 文件的创建时间
+		modificationdate : Date,	// 文件的最后修改时间
+		filestatus : number // 文件的当前状态
+	}
+	
+```
+   - **file_queue_error_handler:fileQueueError(file object, error code, message)**   当选择文件入队失败时触发，每个出错的文件都会触发一次该事件，文件添加队列出错的原因可能有:超过了上传大小限制(-110)，文件为零字节(-120)，超过文件队列数量限制(-100)，设置之外的无效文件类型(-130)。
 
+   - **upload_start_handler:uploadStart(file object) **  在文件往服务端上传之前触发此事件，可以在**这里完成上传前的最后验证**以及其他你需要的操作，例如**添加、修改、删除post数据**等。在完成最后的操作以后，如果函数返回false，那么这个上传不会被启动，并且触发uploadError事件，如果返回true或者无返回，那么将正式启动上传。
 
+   - **upload_error_handler:uploadError(file object, error code, message)   **只要上传被终止或者没有成功完成，那么该事件都将被触发。具体的错误代码如下:
+```javascript
+     SWFUpload.UPLOAD_ERROR = {
+     HTTP_ERROR : -200,
+     MISSING_UPLOAD_URL : -210,
+     IO_ERROR : -220,
+     SECURITY_ERROR : -230,
+     UPLOAD_LIMIT_EXCEEDED : -240,
+     UPLOAD_FAILED : -250,
+     SPECIFIED_FILE_ID_NOT_FOUND	: -260,
+     FILE_VALIDATION_FAILED : -270,
+     FILE_CANCELLED : -280,
+     UPLOAD_STOPPED : -290
+     };
+```
+
+- **upload_success_handler:uploadSuccess(file object, server data)**   当文件上传的处理已经完成（这里的完成只是指向目标处理程序发送了Files信息，只管发，不管是否成功接收），并且<font color=red>**服务端返回了200的HTTP状态**</font>时，触发此事件。在window平台下，服务端的处理程序在处理完文件存储以后，<font color=red>**必须返回一个非空值，否则此事件不会被触发**</font>
+
+- **upload_complete_handler:uploadComplete(file object)**   当上传队列中的<font color=red>**一个文件**</font>完成了一个上传周期，无论是成功(uoloadSuccess触发)还是失败(uploadError触发)，此事件都会被触发，这也标志着一个文件的上传完成，可以进行下一个文件的上传了。
+
+- **upload_progress_handler:uploadProgress(file object, bytes complete, total bytes)**   该事件由flash定时触发，提供三个参数分别访问上传文件对象、已上传的字节数，总共的字节数。因此可以在这个事件中来定时更新页面中的UI元素，以达到及时显示上传进度的效果。<font color=red>**注意:**</font>该事件在Linux版本的Flash Player中存在问题，目前还无法解决。
+
+  这些回调函数可以帮助我们做很多事情，比如在文件加入队列之前做的一些校验，比如我们可以在文件**fileQueued()**方法中完成文件入队前的一些校验，并通过**cancelUpload(fileId)**（会触发uploadError事件）方法来将文件移除队列。
+  
+### 有关参数的传递
+
+在SWFUpload的配置参数中的post_params参数是用来向后台传递参数的，如果无法传递，请尝试将另一个配置参数use_query_string设置为true之后就可以传递参数了。该参数接收一个JS对象:
+
+```javascript
+post_params: {  
+    param1: 'Hello',  
+    param2: '你好'  
+} 
+```
+
+但是如果参数值中含有中文的话，那么后台会报错，也取不到值，可以这样解决:
+
+```javascript
+post_params: {  
+    param1: encodeURI('你好',"utf-8")  
+} 
+```
+
+然后在后台再decode回来，以Java为例:
+
+```java
+URLDecoder.decode(request.getParameter("param1"), "utf-8");  
+```
+
+### 其他问题
+
+- **文件上传完成后的页面跳转:**   可以通过监听uploadSuccess(file object, server data)方法，通过JS控制挑转，<font color = "red" >**该事件在每个文件上传成功均会触发**</font>如果同时在上传多个文件，那么第一个文件上传完成后页面就直接跳转了，后面的文件将不会上传，可以通过SWFUpload.getStats().files_queued是否为0来判断是否还有未上传的文件。
+- **在非IE浏览器中Session不同的问题:**   这是由于Flash Player在非IE浏览器下一个Bug引起的，导致用户登录的Session和文件上传产生的Session不同，也就是说文件上传另生成了一个新的Session。解决办法是手动将SessionID传到后台服务端，在上传路径URL里加上jsessionid变量即可。
+```java
+upload_url: "ServerURL;jsessionid=<%=request.getSession().getId() %>"
+```
+
+### 常用方法
+
+```javascript
+//指定file_id来启动该文件的上传，如果file_id被忽略了，那么默认开始上传第一个文件。
+void startUpload(file_id) 
+//指定file_id来退出文件的上传，从上传队列中删除该文件。
+//如果忽略file_id，那么默认文件上传队列中的第一个文件将被退出上传。
+//如果取消的文件是正在上传，那么会触发uploadError事件。
+//如果将可选参数trigger_error_event设置为false,那么uploadError事件不会触发。
+void cancelUpload(file_id, trigger_error_event) 
+//如果当前有文件上传，那么停止上传，并且将文件还原到上传队列中。
+//停止了正在上传的文件，uploadError事件会被触发。如果此时没有正在上传文件，那么不会发生任何操作，不会触发任何事件。
+void stopUpload() 
+//获取当前状态的统计对象,具体见Stats Object
+object getStats() 
+Stats Object:{
+	in_progress : number // 值为1或0，1表示当前有文件正在上传，0表示当前没有文件正在上传
+	files_queued : number // 当前上传队列中存在的文件数量
+	successful_uploads : number	// 已经上传成功（uploadSuccess触发）的文件数量
+	upload_errors : number // 已经上传失败的文件数量 (不包括退出上传的文件)
+	upload_cancelled : number	// 退出上传的文件数量
+	queue_errors : number // 入队失败（fileQueueError触发）的文件数量
+}
+//动态修改post_params，以前的属性全部被覆盖。param_object必须是一个JavaScript的基本对象，所有属性和值都必须是字符串类型。
+void setPostParams(param_object)
+
+```
+
+更多详细的功能请参考[SWFUpload V2.2.0 API 说明文档](http://www.leeon.me/upload/other/swfupload.html)
