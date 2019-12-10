@@ -8,7 +8,6 @@ header-img: img/post-bg-debug.png
 keywords_post:  "使用 SWFUpload 插件完成多文件上传"
 catalog: true
 tags:
-    - SWFUpload
     - 文件上传
 ---
 
